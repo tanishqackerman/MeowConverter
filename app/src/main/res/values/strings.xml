@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Meow Converter</string>
+    <string name="length">Length</string>
+    <string name="select_quantity">Select Quantity</string>
+</resources>
