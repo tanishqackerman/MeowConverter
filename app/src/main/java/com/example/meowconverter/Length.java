@@ -29,7 +29,6 @@ public class Length extends AppCompatActivity {
     private int pos;
     private int posconv;
     private int num;
-    private int numconv;
     private Button btn;
 
     @Override

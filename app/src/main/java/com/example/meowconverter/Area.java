@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Objects;
 
@@ -18,6 +21,13 @@ public class Area extends AppCompatActivity {
     private AutoCompleteTextView autotextconv;
     private ArrayAdapter<String> adapter;
     private String [] arealist = {"Square meter", "Square decimeter", "Square centimeter", "Square kilometer", "Square millimeter", "Are", "Hectare"};
+    private double [] vallist = {1, 100, 10000, 0.000001, 1000000, 0.01, 0.0001};
+    private Button btn;
+    private EditText inp;
+    private TextView inpconv;
+    private int pos;
+    private int posconv;
+    private int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +38,9 @@ public class Area extends AppCompatActivity {
 
         autotext = findViewById(R.id.autotext);
         autotextconv = findViewById(R.id.autotextconv);
+        btn = findViewById(R.id.button);
+        inp = findViewById(R.id.inp);
+        inpconv = findViewById(R.id.inpconv);
 
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, arealist);
         autotext.setAdapter(adapter);
@@ -37,6 +50,7 @@ public class Area extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
+                pos = i;
             }
         });
 
@@ -44,6 +58,15 @@ public class Area extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
+                posconv = i;
+            }
+        });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                num = Integer.parseInt(inp.getText().toString());
+                inpconv.setText((num*vallist[posconv])/vallist[pos] + "");
             }
         });
     }
